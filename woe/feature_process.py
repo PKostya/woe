@@ -67,16 +67,16 @@ def change_feature_dtype(df,variable_type):
     :return: None
     '''
     s = 'Changing Feature Dtypes'
-    print s.center(60,'-')
+    print (s.center(60,'-'))
     for vname in df.columns:
         try:
             df[vname] = df[vname].astype(variable_type.loc[vname,'v_type'])
-            print vname,' '*(40-len(vname)),'{0: >10}'.format(variable_type.loc[vname,'v_type'])
+            print( vname,' '*(40-len(vname)),'{0: >10}'.format(variable_type.loc[vname,'v_type']))
         except Exception:
-            print '[error]',vname
+            print( '[error]',vname)
 
     s = 'Variable Dtypes Have Been Specified'
-    print s.center(60,'-')
+    print (s.center(60,'-'))
 
     return
 
@@ -250,7 +250,7 @@ def binning_data_split(df,var,global_bt,global_gt,min_sample,alpha=0.01):
     #remove max value and min value in case dataset_r  or dataset_l will be null
     for point in percent_value[0:len(percent_value)-1]:
         # If there is only a sample or a negative sample, skip
-        if len(set(df[df[var] > point]['target'])) == 1 or len(set(df[df[var] <= point]['target'])) == 1\
+        if len(set(df[df[var] > point]['target'])) == 1 or len(set(df[df[var] <= point]['target'])) == 1 \
                 or len(df[df[var] > point]) < min_sample or len(df[df[var] <= point]) < min_sample :
             continue
 
@@ -399,7 +399,7 @@ def proc_woe_discrete(df,var,global_bt,global_gt,min_sample,alpha=0.01):
     :return:
     '''
     s = 'process discrete variable:'+str(var)
-    print s.center(60, '-')
+    print (s.center(60, '-'))
     div = DisInfoValue()
     div.var_name = var
     rdict = {}
@@ -463,7 +463,7 @@ def proc_woe_continuous(df,var,global_bt,global_gt,min_sample,alpha=0.01):
     :return:
     '''
     s = 'process continuous variable:'+str(var)
-    print s.center(60, '-')
+    print( s.center(60, '-'))
     iv_tree = binning_data_split(df, var,global_bt,global_gt,min_sample,alpha)
 
     # Traversal tree, get the segmentation point
